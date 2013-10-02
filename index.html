@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<title>投票</title>
+		<meta http-equiv="charset" content="text/html" charset="utf-8"/>
+		<script src="js/PJ.js"></script>
+		<script>
+			Initialize();	
+			window.onload = function(){
+				Html("vote","投票");
+				Html("make","新建");
+				Html("count","统计");
+				Html("about","关于");
+
+				Position("vote","absolute");
+				Position("make","absolute");
+				Position("count","absolute");
+				Position("about","absolute");
+
+				S("vote").backgroundColor = "blue";
+				S("vote").width = GetWindowWidth()/2-20;
+				S("vote").height = GetWindowHeight()/2-20;
+				S("vote").top = 10;
+				S("vote").left = 10;
+				S("vote").opacity = 0.7;
+				S("vote").cursor = "default";
+				S("vote").fontSize = Math.floor(NoPx(S("vote").height)*0.8);
+				S("vote").color = "white";
+				O("vote").onmouseover = function(){S(this).opacity = 0.9;};
+				O("vote").onmouseout = function(){S(this).opacity = 0.7;};
+				O("vote").onclick = function(){location.href = "vote.html";};
+
+				S("make").backgroundColor = "blue";
+				S("make").width = GetWindowWidth()/2-20;
+				S("make").height = GetWindowHeight()/2-20;
+				S("make").top = 10;
+				S("make").left = GetWindowWidth()/2+10;
+				S("make").opacity = 0.7;
+				S("make").cursor = "default";
+				S("make").fontSize = Math.floor(NoPx(S("vote").height)*0.8);
+				S("make").color = "white";
+				O("make").onmouseover = function(){S(this).opacity = 0.9;};
+				O("make").onmouseout = function(){S(this).opacity = 0.7;};
+				O("make").onclick = function(){location.href = "make.html";};
+
+				S("count").backgroundColor = "blue";
+				S("count").width = GetWindowWidth()/2-20;
+				S("count").height = GetWindowHeight()/2-20;
+				S("count").top = GetWindowHeight()/2+10;
+				S("count").left = 10;
+				S("count").opacity = 0.7;
+				S("count").cursor = "default";
+				S("count").fontSize = Math.floor(NoPx(S("vote").height)*0.8);
+				S("count").color = "white";
+				O("count").onmouseover = function(){S(this).opacity = 0.9;};
+				O("count").onmouseout = function(){S(this).opacity = 0.7;};
+				O("count").onclick = function(){location.href = "count.html";};
+
+				S("about").backgroundColor = "blue";
+				S("about").width = GetWindowWidth()/2-20;
+				S("about").height = GetWindowHeight()/2-20;
+				S("about").top = GetWindowHeight()/2+10;
+				S("about").left = GetWindowWidth()/2+10;
+				S("about").opacity = 0.7;
+				S("about").cursor = "default";
+				S("about").fontSize = Math.floor(NoPx(S("vote").height)*0.8);
+				S("about").color = "white";
+				O("about").onmouseover = function(){S(this).opacity = 0.9;};
+				O("about").onmouseout = function(){S(this).opacity = 0.7;};
+				O("about").onclick = function(){location.href = "about.html";};
+
+
+			};
+		</script>
+	</head>
+	<body>
+		<div id="vote"></div>
+		<div id="make"></div>
+		<div id="count"></div>
+		<div id="about"></div>
+	</body>
+</html>
