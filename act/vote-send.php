@@ -68,7 +68,7 @@
 	 				'".$stuID."',
 	 				'".$name."',
 	 				'".$key."',
-	 				'".base64_encode($label)."'
+	 				'".$label."'
 	 			)
 	 	",$con);
 

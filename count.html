@@ -1,0 +1,149 @@
+<html>
+	<head>
+		<title>投票</title>
+		<meta http-equiv="charset" content="text/html" charset="utf-8"/>
+		<script src="js/PJ.js"></script>
+		<script>
+			Initialize();	
+			window.onload = function(){
+				
+				dWidth = GetWindowWidth()-20;
+				dHeight = GetWindowHeight()/10;
+
+				Html("back","后退");
+				Position("back","absolute");
+				S("back").width = dWidth;
+				S("back").height = dHeight;
+				S("back").top = 10;
+				S("back").left = 10;
+				Opacity("back",70);
+				S("back").cursor = "default";
+				S("back").fontSize = dHeight * 0.8;
+				S("back").color = "white";
+				S("back").backgroundColor = "blue";
+				O("back").onmouseover = function(){Opacity(this,90);};
+				O("back").onmouseout = function(){Opacity(this,70);};
+				O("back").onclick= function(){location.href = "index.html";};
+
+				Html("key","KEY");
+				Position("key","absolute");
+				S("key").width = dWidth * 0.3;
+				S("key").height = dHeight;
+				S("key").top = 20 + dHeight;
+				S("key").left = 10;
+				Opacity("key",70);
+				S("key").cursor = "default";
+				S("key").fontSize = dHeight * 0.8;
+				S("key").color = "white";
+				S("key").backgroundColor = "purple";
+
+				O("ipt-key").type = "text";
+				Position("ipt-key","absolute");
+				S("ipt-key").width = dWidth * 0.7;
+				S("ipt-key").height = dHeight;
+				S("ipt-key").top = 20 + dHeight;
+				S("ipt-key").left = 10 + dWidth * 0.3;
+				Opacity("ipt-key",70);
+				S("ipt-key").cursor = "default";
+				S("ipt-key").fontSize = dHeight * 0.7;
+				S("ipt-key").color = "white";
+				S("ipt-key").backgroundColor = "blue";
+				S("ipt-key").border = "5px solid purple";
+				O("ipt-key").onmouseover = function(){Opacity(this,90);};
+				O("ipt-key").onmouseout = function(){Opacity(this,70);};
+
+				Html("password","密码");
+				Position("password","absolute");
+				S("password").width = dWidth * 0.3;
+				S("password").height = dHeight;
+				S("password").top = 30 + dHeight * 2;
+				S("password").left = 10;
+				Opacity("password",70);
+				S("password").cursor = "default";
+				S("password").fontSize = dHeight * 0.8;
+				S("password").color = "white";
+				S("password").backgroundColor = "red";
+
+				O("ipt-password").type = "password";
+				Position("ipt-password","absolute");
+				S("ipt-password").width = dWidth * 0.7;
+				S("ipt-password").height = dHeight;
+				S("ipt-password").top = 30 + dHeight * 2;
+				S("ipt-password").left = 10 + dWidth * 0.3;
+				Opacity("ipt-password",70);
+				S("ipt-password").cursor = "default";
+				S("ipt-password").fontSize = dHeight * 0.7;
+				S("ipt-password").color = "white";
+				S("ipt-password").backgroundColor = "gray";
+				S("ipt-password").border = "5px solid red";
+				O("ipt-password").onmouseover = function(){Opacity(this,90);};
+				O("ipt-password").onmouseout = function(){Opacity(this,70);};
+
+				Html("get","查询");
+				Position("get","absolute");
+				S("get").width = dWidth;
+				S("get").height = dHeight;
+				S("get").top = 40 + dHeight * 3;
+				S("get").left = 10;
+				Opacity("get",70);
+				S("get").cursor = "default";
+				S("get").fontSize = NoPx(S("get").height) * 0.8;
+				S("get").color = "white";
+				S("get").backgroundColor = "brown";
+				O("get").onmouseover = function(){Opacity(this,90);};
+				O("get").onmouseout = function(){Opacity(this,70);};
+				O("get").onclick = function(){
+					var args = "key=" + encodeURIComponent(O("ipt-key").value);
+					args += "&password=" + encodeURIComponent(O("ipt-password").value);
+					function callback(){
+						//alert(this);
+						var obj = eval("("+this+")");
+						if(obj.stat==0){
+							ShowCount(obj);
+						}else alert(obj.str);
+					};
+					PostAjaxRequest(callback,"act/count.php",args);
+				}
+
+				Position("count","absolute");
+				S("count").top = dHeight *4 + 50;
+				S("count").left = 10;
+				S("count").width = dWidth;
+				S("count").color = "white";
+				//S("count").height = 0;
+
+				function ShowCount(obj){
+					var cnt = [];
+					for(i=0;i<obj.labels.length;i++)
+						cnt[obj.labels[i]]=0;
+					for(i=0;i<obj.votes.length;i++)
+						cnt[obj.votes[i].label]++;
+					while(O("count").hasChildNodes())
+						O("count").removeChild(O("count").lastChild);
+					for(i = 0;i < obj.labels.length;i++){
+						var objx = document.createElement("div");
+						Html(objx,obj.labels[i]+"<br><div align='right'>票数:"+cnt[obj.labels[i]]+"</div>");
+						S(objx).backgroundColor = "black";
+						Opacity(objx,70);
+						O(objx).onmouseover = function(){Opacity(this,90);};
+						O(objx).onmouseout = function(){Opacity(this,70);};
+						S(objx).wordBreak = "break-all";
+						S(objx).fontSize = dHeight * 0.7;
+						O("count").appendChild(objx);
+						//
+					}
+				}
+
+			};
+		</script>
+	</head>
+	<body>
+		<div id="back"></div>
+		<div id="key"></div>
+		<input id="ipt-key"/>
+		<div id="password"></div>
+		<input id="ipt-password"/>
+		<div id="get"></div>
+		<div id="count"></div>
+	</body>
+</head>
