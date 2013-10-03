@@ -23,17 +23,17 @@
 
 	if(!isset($_POST["label0"]))
 		printback(-1,"格式错误");
+	
+	$title = base64_encode($title);
+	$password = md5($password);
+	$describe = base64_encode($describe);
+
 	$labels = base64_encode($_POST["label0"]);
 	for($i=1;$i<$cnt;$i++)
 		if(!isset($_POST["label".$i]))
 			printback(-1,"格式错误");
 		else
 			$labels = $labels.",".base64_encode($_POST["label".$i]);
-
-	$title = base64_encode($title);
-	$password = md5($password);
-	$describe = base64_encode($describe);
-	$labels = base64_encode($labels);
 
 	$con = mysql_connect("localhost","root","root");
 	if(!$con)

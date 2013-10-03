@@ -13,13 +13,11 @@
 				return false;
 			}
 			window.onload = function(){
-
-				S(document.body).overflowX = "hidden";
-
 				dWidth = GetWindowWidth()-20;
 				dHeight = GetWindowHeight()/10;
 				
-				S(document.body).height = dHeight * 18 +60;
+				S(document.body).overflowX = "hidden";
+				S(document.body).height = dHeight * 18 +60;				
 				
 				Html("back","后退");
 				Position("back","absolute");
@@ -29,14 +27,14 @@
 				S("back").left = 10;
 				Opacity("back",70);
 				S("back").cursor = "default";
-				S("back").fontSize = Math.floor(dHeight*0.8);
+				S("back").fontSize = dHeight*0.8;
 				S("back").color = "white";
 				S("back").backgroundColor = "blue";
 				O("back").onmouseover = function(){Opacity(this,90);};
 				O("back").onmouseout = function(){Opacity(this,70);};
 				O("back").onclick = function(){location.href = "index.html";};
 
-				Html("title","标题:");
+				Html("title","标题");
 				Position("title","absolute");
 				S("title").width = dWidth * 0.3;
 				S("title").height = dHeight;
@@ -44,7 +42,7 @@
 				S("title").left  = 10;
 				Opacity("title",70);
 				S("title").cursor = "default";
-				S("title").fontSize = Math.floor(dHeight * 0.8);
+				S("title").fontSize = dHeight * 0.8;
 				S("title").color = "white";
 				S("title").backgroundColor = "purple";
 
@@ -55,7 +53,7 @@
 				S("ipt-title").left = 10 + dWidth * 0.3;
 				Opacity("ipt-title",70);
 				S("ipt-title").cursor = "default";
-				S("ipt-title").fontSize = Math.floor(dHeight * 0.8);
+				S("ipt-title").fontSize = dHeight * 0.8;
 				S("ipt-title").color = "white";
 				S("ipt-title").backgroundColor = "blue";
 				S("ipt-title").border = "5px solid purple";
@@ -70,19 +68,19 @@
 				S("describes").left = 10;
 				Opacity("describes",70);
 				S("describes").cursor = "default";
-				S("describes").fontSize = Math.floor(dHeight * 0.8);
+				S("describes").fontSize = dHeight * 0.8;
 				S("describes").color = "white";
 				S("describes").backgroundColor = "green";
 
 
 				Position("ipt-describes","absolute");
 				S("ipt-describes").width = dWidth;
-				S("ipt-describes").height = dHeight * 6 -10;
+				S("ipt-describes").height = dHeight * 6;
 				S("ipt-describes").top = dHeight * 4 + 40;
 				S("ipt-describes").left = 10;
 				Opacity("ipt-describes",70);
 				S("ipt-describes").cursor = "default";
-				S("ipt-describes").fontSize = Math.floor(dHeight * 0.5);
+				S("ipt-describes").fontSize = dHeight * 0.5;
 				S("ipt-describes").color = "white";
 				S("ipt-describes").backgroundColor = "black";
 				S("ipt-describes").resize = "none";
@@ -90,7 +88,7 @@
 				O("ipt-describes").onmouseover = function(){Opacity(this,90);};
 				O("ipt-describes").onmouseout = function(){Opacity(this,70);};
 
-				Html("password","密码:");
+				Html("password","密码");
 				Position("password","absolute");
 				S("password").width = dWidth * 0.3;
 				S("password").height = dHeight;
@@ -98,7 +96,7 @@
 				S("password").left = 10;
 				Opacity("password",70);
 				S("password").cursor = "default";
-				S("password").fontSize = Math.floor(dHeight * 0.8);
+				S("password").fontSize = dHeight * 0.8;
 				S("password").color = "white";
 				S("password").backgroundColor = "red";
 
@@ -109,7 +107,7 @@
 				S("ipt-password").left = 10 + dWidth*0.3;
 				Opacity("ipt-password",70);
 				S("ipt-password").cursor = "default";
-				S("ipt-password").fontSize = Math.floor(dHeight * 0.7);
+				S("ipt-password").fontSize = dHeight * 0.7;
 				S("ipt-password").color = "white";
 				S("ipt-password").backgroundColor = "gray";
 				S("ipt-password").border = "5px solid red";
@@ -123,22 +121,22 @@
 				Position("options","absolute");
 				S("options").width = dWidth;
 				S("options").height = dHeight;
-				S("options").top = dHeight * 10 + 40;
+				S("options").top = dHeight * 10 + 50;
 				S("options").left = 10;
 				Opacity("options",70);
 				S("options").cursor = "default";
-				S("options").fontSize = Math.floor(dHeight * 0.8);
+				S("options").fontSize = dHeight * 0.8;
 				S("options").color = "white";
 				S("options").backgroundColor = "green";
 
 				Position("labels","absolute");
 				S("labels").width = dWidth;
 				S("labels").height = dHeight * 5;
-				S("labels").top = dHeight * 11 + 40;
+				S("labels").top = dHeight * 11 + 50;
 				S("labels").left = 10;
 				Opacity("labels",70);
 				S("labels").cursor = "default";
-				S("labels").fontSize = Math.floor(dHeight * 0.7);
+				S("labels").fontSize = dHeight * 0.7;
 				S("labels").color = "white";
 				S("labels").backgroundColor = "blue";
 				//O("labels").onmouseover = function(){Opacity(this,90);};
@@ -149,11 +147,11 @@
 				Position("add","absolute");
 				S("add").width = (dWidth) * 0.3;
 				S("add").height = dHeight;
-				S("add").top = dHeight * 16 + 40;
+				S("add").top = dHeight * 16 + 50;
 				S("add").left = dWidth*0.7+10;
 				Opacity("add",70);
 				S("add").cursor = "default";
-				S("add").fontSize = Math.floor(dHeight * 0.8);
+				S("add").fontSize = dHeight * 0.8;
 				S("add").color = "white";
 				S("add").backgroundColor = "red";
 				O("add").onmouseover = function(){Opacity(this,90);};
@@ -167,7 +165,7 @@
 						S(obj).backgroundColor = "black";
 						S(obj).wordBreak = "break-all";
 						obj.onmouseover = function(){
-							S(this,"backgroundColor","red");
+							S(this,"backgroundColor","blue");
 						};
 						obj.onmouseout = function(){
 							S(this,"backgroundColor","black");
@@ -187,11 +185,11 @@
 				Position("ipt-label","absolute");
 				S("ipt-label").width = dWidth * 0.7;
 				S("ipt-label").height = dHeight;
-				S("ipt-label").top = dHeight * 16 + 40;
+				S("ipt-label").top = dHeight * 16 + 50;
 				S("ipt-label").left = 10;
 				Opacity("ipt-label",70);
 				S("ipt-label").cursor = "default";
-				S("ipt-label").fontSize = Math.floor(dHeight * 0.7);
+				S("ipt-label").fontSize = dHeight * 0.7;
 				S("ipt-label").color = "white";
 				S("ipt-label").backgroundColor = "blue";
 				O("ipt-label").onmouseover = function(){Opacity(this,90);};
@@ -202,13 +200,13 @@
 				Position("submit","absolute");
 				S("submit").width = dWidth;
 				S("submit").height = dHeight;
-				S("submit").top = dHeight*17 +50;
+				S("submit").top = dHeight*17 +60;
 				S("submit").left = 10;
 				Opacity("submit",70);
 				S("submit").cursor = "default";
-				S("submit").fontSize = Math.floor(dHeight * 0.8);
+				S("submit").fontSize = dHeight * 0.8;
 				S("submit").color = "white";
-				S("submit").backgroundColor = "blue";
+				S("submit").backgroundColor = "purple";
 				O("submit").onmouseover = function(){Opacity(this,90);};
 				O("submit").onmouseout = function(){Opacity(this,70);};
 				O("submit").can = true;
@@ -236,6 +234,7 @@
 								O("submit").can = true;
 							}
 						};
+						//if(confirm(args))
 						PostAjaxRequest(callback,"act/make.php",args);
 					}
 				};
@@ -246,10 +245,10 @@
 		<div id="back"></div>
 		<div id="title"></div>
 		<input id="ipt-title"/>
-		<div id="describes"></div>
-		<textarea id="ipt-describes"></textarea>
 		<div id="password"></div>
 		<input id="ipt-password"/>
+		<div id="describes"></div>
+		<textarea id="ipt-describes"></textarea>
 		<div id="options"></div>
 		<div id="labels"></div>
 		<div id="add"></div>

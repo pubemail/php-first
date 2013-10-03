@@ -5,8 +5,302 @@
 		<script src="js/PJ.js"></script>
 		<script>
 			Initialize();
+			var choose;
 			window.onload = function(){
+
+				dWidth = GetWindowWidth()-20;
+				dHeight = GetWindowHeight()/10;
+
+				S(document.body).overflowX = "hidden";
+				S(document.body).height = 19 * dHeight + 80;
+
 				
+				Html("back","后退");
+				Position("back","absolute");
+				S("back").width = dWidth;
+				S("back").height = dHeight;
+				S("back").top = 10;
+				S("back").left = 10;
+				Opacity("back",70);
+				S("back").cursor = "default";
+				S("back").fontSize = dHeight * 0.8;
+				S("back").color = "white";
+				S("back").backgroundColor = "blue";
+				O("back").onmouseover = function(){Opacity(this,90);};
+				O("back").onmouseout = function(){Opacity(this,70);};
+				O("back").onclick = function(){location.href = "index.html";};
+
+				Html("key","KEY");
+				Position("key","absolute");
+				S("key").width = dWidth * 0.3;
+				S("key").height = dHeight;
+				S("key").top = 20 + dHeight;
+				S("key").left = 10;
+				Opacity("key",70);
+				S("key").cursor = "default";
+				S("key").fontSize = dHeight * 0.8;
+				S("key").color = "white";
+				S("key").backgroundColor = "red";
+
+				Position("ipt-key","absolute");
+				S("ipt-key").width = dWidth *0.5;
+				S("ipt-key").height = dHeight;
+				S("ipt-key").top = 20 + dHeight;
+				S("ipt-key").left = 10 + dWidth * 0.3;
+				Opacity("ipt-key",70);
+				S("ipt-key").cursor = "default";
+				S("ipt-key").fontSize = dHeight * 0.7;
+				S("ipt-key").color = "white";
+				S("ipt-key").backgroundColor = "gray";
+				S("ipt-key").border = "5px solid red";
+				O("ipt-key").onmouseover = function(){Opacity(this,90);};
+				O("ipt-key").onmouseout = function(){Opacity(this,70);};
+
+				Html("get","GO");
+				Position("get","absolute");
+				S("get").width = dWidth * 0.2;
+				S("get").height = dHeight;
+				S("get").top = 20 + dHeight;
+				S("get").left = 10 + dWidth * 0.8;
+				Opacity("get",70);
+				S("get").cursor = "default";
+				S("get").fontSize = dHeight * 0.8;
+				S("get").color = "white";
+				S("get").backgroundColor = "red";
+				O("get").onmouseover = function(){Opacity(this,90);};
+				O("get").onmouseout = function(){Opacity(this,70);};
+				O("get").onclick = function(){
+					if (O("ipt-key").value=="")
+						return;
+					function callback(){
+						//alert(this);
+						var obj = eval("("+this+")");
+						if(obj.stat==0){
+							O("val-title").value = obj.title;
+							O("val-describe").value = obj.describe;
+							while(O("labels").hasChildNodes())
+								O("labels").removeChild(O("labels").lastChild);
+							for(var i=0;i<obj.labels.length;i++){
+								var obj_opt = document.createElement("div");
+								Html(obj_opt,obj.labels[i]);
+								S(obj_opt).backgroundColor = "blue";
+								S(obj_opt).border = 0;
+								S(obj_opt).wordBreak = "break-all";
+								obj_opt.onmouseover = function(){
+									S(this,"backgroundColor","black");
+								};
+								obj_opt.onmouseout = function(){
+									S(this,"backgroundColor","blue");
+								};
+								obj_opt.onclick = function(){
+									if(typeof(choose)!='undefined')
+										S(choose).border = 0;
+									S(this).border = "2px solid yellow";
+									choose = this;
+								}
+								O("labels").appendChild(obj_opt);
+							}
+						}else alert(obj.str);
+						//add sth later..
+					};
+					PostAjaxRequest(callback,"act/vote-get.php","key="+encodeURIComponent(O("ipt-key").value));
+				}
+
+				Html("title","标题");
+				Position("title","absolute");
+				S("title").width = dWidth * 0.3;
+				S("title").height = dHeight;
+				S("title").top = 30 + 2 * dHeight;
+				S("title").left = 10;
+				Opacity("title",70);
+				S("title").cursor = "default";
+				S("title").fontSize = dHeight * 0.8;
+				S("title").color = "white";
+				S("title").backgroundColor = "purple";
+
+				Position("val-title","absolute");
+				S("val-title").width = dWidth * 0.7;
+				S("val-title").height = dHeight;
+				S("val-title").top = 30 + 2 * dHeight;
+				S("val-title").left = 10 + dWidth * 0.3;
+				Opacity("val-title",70);
+				S("val-title").cursor = "default";
+				S("val-title").fontSize = dHeight * 0.7;
+				S("val-title").color = "white";
+				S("val-title").backgroundColor = "blue";
+				S("val-title").border = "5px solid purple";
+				O("val-title").readOnly = true;
+
+				Html("describe","描述");
+				Position("describe","absolute");
+				S("describe").width = dWidth;
+				S("describe").height = dHeight;
+				S("describe").top = 40 + dHeight * 3;
+				S("describe").left = 10;
+				Opacity("describe",70);
+				S("describe").cursor = "default";
+				S("describe").fontSize = dHeight * 0.8;
+				S("describe").color = "white";
+				S("describe").backgroundColor = "green";
+
+				Position("val-describe","absolute");
+				S("val-describe").width = dWidth;
+				S("val-describe").height = dHeight * 6;
+				S("val-describe").left = 10;
+				S("val-describe").top = 40 + dHeight * 4;
+				Opacity("val-describe",70);
+				S("val-describe").cursor = "default";
+				S("val-describe").fontSize = dHeight * 0.5;
+				S("val-describe").color = "white";
+				S("val-describe").backgroundColor = "black";
+				S("val-describe").border = 0;
+				S("val-describe").resize = "none";
+				O("val-describe").readOnly = true;
+				//O("val-describe").onmouseover = function(){Opacity(this,90);};
+				//O("val-describe").onmouseout = function(){Opacity(this,70);};
+
+				Html("options","选项 - 单击选择");
+				Position("options","absolute");
+				S("options").width = dWidth;
+				S("options").height = dHeight;
+				S("options").top = 50 + 10 * dHeight;
+				S("options").left = 10;
+				Opacity("options",70);
+				S("options").cursor = "default";
+				S("options").fontSize = dHeight * 0.8;
+				S("options").color = "white";
+				S("options").backgroundColor = "green";
+
+				Position("labels","absolute");
+				S("labels").width = dWidth;
+				S("labels").height = dHeight * 5;
+				S("labels").top = 50 + dHeight * 11;
+				S("labels").left = 10;
+				Opacity("labels",70);
+				S("labels").cursor = "default";
+				S("labels").fontSize = dHeight * 0.7;
+				S("labels").color = "white";
+				S("labels").backgroundColor = "blue";
+
+				Html("stuID","学号");
+				Position("stuID","absolute");
+				S("stuID").width = dWidth * 0.3;
+				S("stuID").height = dHeight;
+				S("stuID").top = 60 + 16 * dHeight;
+				S("stuID").left = 10;
+				Opacity("stuID",70);
+				S("stuID").cursor = "default";
+				S("stuID").fontSize = dHeight * 0.8;
+				S("stuID").color = "white";
+				S("stuID").backgroundColor = "red";
+
+				Position("ipt-stuID","absolute");
+				S("ipt-stuID").width = dWidth * 0.7;
+				S("ipt-stuID").height = dHeight;
+				S("ipt-stuID").top = 60 + 16 * dHeight;
+				S("ipt-stuID").left = 10 + dWidth * 0.3;
+				Opacity("ipt-stuID",70);
+				S("ipt-stuID").cursor = "default";
+				S("ipt-stuID").fontSize = dHeight * 0.7;
+				S("ipt-stuID").color = "white";
+				S("ipt-stuID").backgroundColor = "gray";
+				S("ipt-stuID").border = "5px solid red";
+				O("ipt-stuID").onmouseover = function(){
+					Opacity(this,90);
+				};
+				O("ipt-stuID").onmouseout = function(){
+					Opacity(this,70);
+				};
+
+				Html("name","姓名");
+				Position("name","absolute");
+				S("name").width = dWidth * 0.3;
+				S("name").height = dHeight;
+				S("name").top = 70 + 17 * dHeight;
+				S("name").left =10;
+				Opacity("name",70);
+				S("name").cursor = "default";
+				S("name").fontSize = dHeight * 0.8;
+				S("name").color = "white";
+				S("name").backgroundColor = "green";
+
+				Position("ipt-name","absolute");
+				S("ipt-name").width = dWidth * 0.7;
+				S("ipt-name").height = dHeight;
+				S("ipt-name").top = 70 + 17 * dHeight;
+				S("ipt-name").left = 10 + dWidth * 0.3;
+				Opacity("ipt-name",70);
+				S("ipt-name").cursor = "default";
+				S("ipt-name").fontSize = dHeight * 0.7;
+				S("ipt-name").color = "white";
+				S("ipt-name").backgroundColor = "pink";
+				S("ipt-name").border = "5px solid green";
+				O("ipt-name").onmouseover = function(){Opacity(this,90);};
+				O("ipt-name").onmouseout = function(){Opacity(this,70);};
+
+				Html("submit","提交");
+				Position("submit","absolute");
+				S("submit").width = dWidth;
+				S("submit").height = dHeight;
+				S("submit").top = 80 + dHeight * 18;
+				S("submit").left = 10;
+				Opacity("submit",70);
+				S("submit").cursor = "default";
+				S("submit").fontSize = dHeight * 0.8;
+				S("submit").color = "white";
+				S("submit").backgroundColor = "purple";
+				O("submit").onmouseover = function(){
+					Opacity(this,90);
+				};
+				O("submit").onmouseout = function(){
+					Opacity(this,70);
+				}
+				O("submit").can = true;
+				O("submit").onclick = function(){
+					if(typeof(choose)=='undefined')
+						return;
+					if(!this.can)
+						return;
+					Html(this,"提交中..");
+					this.can = false;
+					var args = "key=" + encodeURIComponent(O("ipt-key").value);
+					args += "&label=" + encodeURIComponent(Html(choose));
+					args += "&stuID=" + encodeURIComponent(O("ipt-stuID").value);
+					args += "&name=" + encodeURIComponent(O("ipt-name").value);
+					function callback2(){
+						//alert(this);
+						var obj = eval("("+this+")");
+						if(obj.stat==0)
+							Html("submit",obj.str);
+						else {
+							alert(obj.str);
+							Html("submit","提交");
+							O("submit").can = true;
+						}
+					};
+					PostAjaxRequest(callback2,"act/vote-send.php",args);
+				};
+
+
 			};
 		</script>
+	</head>
+	<body>
+		<div id="back"></div>
+		<div id="key"></div>
+		<input id="ipt-key"/>
+		<div id="get"></div>
+		<div id="title"></div>
+		<input id="val-title"/>
+		<div id="describe"></div>
+		<textarea id="val-describe"></textarea>
+		<div id="options"></div>
+		<div id="labels"></div>
+		<div id="stuID"></div>
+		<input id="ipt-stuID"></div>
+		<div id="name"></div>
+		<input id="ipt-name"></div>
+		<div id="submit"></div>
+		
+	</body>
 </html>
